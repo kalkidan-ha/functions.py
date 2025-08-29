@@ -1,1 +1,49 @@
+# 1) Function that returns square of a number
+def square(n):
+    return n * n
+
+print(square(5))  # 25
+
+
+# 2) Check if string is palindrome
+def is_palindrome(s):
+    return s == s[::-1]
+
+print(is_palindrome("madam"))  # True
+
+
+# 3) Decorator that logs execution time
+import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"Execution time: {end-start:.5f} seconds")
+        return result
+    return wrapper
+
+@timer
+def slow_function():
+    time.sleep(1)
+    return "Done!"
+
+print(slow_function())
+
+
+# 4) Generator for infinite prime numbers
+def prime_generator():
+    num = 2
+    while True:
+        for i in range(2, int(num**0.5)+1):
+            if num % i == 0:
+                break
+        else:
+            yield num
+        num += 1
+
+primes = prime_generator()
+for _ in range(10):
+    print(next(primes))  # first 10 primes
 
